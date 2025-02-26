@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BotVersion xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>v1</fullName>
+    <articleAnswersGPTEnabled>false</articleAnswersGPTEnabled>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>By continuing, you agree to PETRONAS Dagangan Berhad (“PDB”) processing your personal data for communication purposes via the Mesralink WhatsApp channel, in accordance with PDB’s Privacy Statement https://www.mymesra.com.my/about-us/policies-notice/petronas-dagangan-berhad-privacy-statement.
+
+Hi I&apos;m Melissa, your virtual agent. Could you provide me with the details of your enquiry?</message>
+                <messageIdentifier>f5e79013-00fc-4c25-949c-c496b4ebc178</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>10e910f5-8008-44ca-a147-4bd5db530c1e</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>dc9f9a7b-6194-4832-8bcc-17f870b1fb48</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Welcome</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Hi! I&apos;m your helpful bot.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>Apologies, but it seems there&apos;s an issue with the system at the moment. I’m unable to complete your request right now. Please try again later. Would you like me to transfer you to a live agent for further assistance?</message>
+                <messageIdentifier>a20810af-90ad-4eb7-8b87-1bc5603f9c4d</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>09ab7068-dee4-4e8c-a17e-79a632e5ad77</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <stepIdentifier>4878adbd-44e9-4181-a9f3-50998449b768</stepIdentifier>
+            <type>Wait</type>
+        </botSteps>
+        <developerName>Error_Handling</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Unfortunately, a system error occurred. Let us start again.</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <botDialogs>
+        <botSteps>
+            <botMessages>
+                <message>One moment while I connect you to the next available service representative.</message>
+                <messageIdentifier>6bf94292-eaf3-4187-a5be-2a812497bd4a</messageIdentifier>
+            </botMessages>
+            <stepIdentifier>abb1502b-04f6-4e68-8cba-b8cce6050afd</stepIdentifier>
+            <type>Message</type>
+        </botSteps>
+        <botSteps>
+            <conversationSystemMessage>
+                <type>Transfer</type>
+            </conversationSystemMessage>
+            <stepIdentifier>d46cee20-7c3d-4a8e-9c33-1427570f7e23</stepIdentifier>
+            <type>SystemMessage</type>
+        </botSteps>
+        <developerName>Transfer_To_Agent</developerName>
+        <isPlaceholderDialog>false</isPlaceholderDialog>
+        <label>Transfer To Agent</label>
+        <showInFooterMenu>false</showInFooterMenu>
+    </botDialogs>
+    <citationsEnabled>false</citationsEnabled>
+    <company>Petronas - PDB Mesralink</company>
+    <conversationDefinitionPlanners>
+        <genAiPlannerName>Petronas_Service_Agent_3</genAiPlannerName>
+    </conversationDefinitionPlanners>
+    <entryDialog>Welcome</entryDialog>
+    <intentDisambiguationEnabled>false</intentDisambiguationEnabled>
+    <intentV3Enabled>false</intentV3Enabled>
+    <knowledgeActionEnabled>false</knowledgeActionEnabled>
+    <knowledgeFallbackEnabled>false</knowledgeFallbackEnabled>
+    <role>An AI customer service agent whose job is to help customers with support questions.</role>
+    <smallTalkEnabled>false</smallTalkEnabled>
+    <toneType>Casual</toneType>
+</BotVersion>
