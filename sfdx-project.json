@@ -1,0 +1,51 @@
+{
+    "packageDirectories":
+    [
+        {
+            "path": "force-app",
+            "default": true
+        }
+    ],
+    "name": ".",
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "62.0",
+    "replacements":
+    [
+        {
+            "filename": "force-app/main/default/genAiPromptTemplates/PDB_Giftcards_FAQ.genAiPromptTemplate-meta.xml",
+            "stringToReplace": "Default_FileUDMO_SI_Retriever",
+            "replaceWithEnv": "Default_FileUDMO_SI_Retriever"
+        },
+        {
+            "filename": "force-app/main/default/genAiPromptTemplates/PDB_Mesra_Rewards_FAQ.genAiPromptTemplate-meta.xml",
+            "stringToReplace": "Default_FileUDMO_SI_Retriever",
+            "replaceWithEnv": "Default_FileUDMO_SI_Retriever"
+        },
+        {
+            "filename": "force-app/main/default/genAiPromptTemplates/PDB_NGV_FAQ.genAiPromptTemplate-meta.xml",
+            "stringToReplace": "Default_FileUDMO_SI_Retriever",
+            "replaceWithEnv": "Default_FileUDMO_SI_Retriever"
+        },
+        {
+            "filename": "force-app/main/default/genAiPromptTemplates/PDB_Petronas_Shop_FAQ.genAiPromptTemplate-meta.xml",
+            "stringToReplace": "Default_FileUDMO_SI_Retriever",
+            "replaceWithEnv": "Default_FileUDMO_SI_Retriever"
+        },
+        {
+            "filename": "force-app/main/default/genAiPromptTemplates/PDB_SmartPay_FAQ.genAiPromptTemplate-meta.xml",
+            "stringToReplace": "Default_FileUDMO_SI_Retriever",
+            "replaceWithEnv": "Default_FileUDMO_SI_Retriever"
+        },
+        {
+            "filename": "force-app/main/default/bots/Petronas_Service_Agent_3/Petronas_Service_Agent_3.bot-meta.xml",
+            "stringToReplace": "AgentuserREPLACE",
+            "replaceWithEnv": "AgentuserREPLACE"
+        },
+        {
+            "filename": "force-app/main/default/bots/Melissa_UpdatedV2_AgentForce/Melissa_UpdatedV2_AgentForce.bot-meta.xml",
+            "stringToReplace": "BotuserREPLACE",
+            "replaceWithEnv": "BotuserREPLACE"
+        }
+    ]
+}

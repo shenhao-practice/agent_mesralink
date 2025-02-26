@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export File_PDB_Mesra_Rewards_FAQ='File_PDB_Mesra_Rewards_FAQ_1Cx_Zwpa3b8fd6f'
+export File_PDB_Shop_FAQ='File_PDB_Shop_FAQ_1Cx_Zwpbda22e80'
+export File_PDB_SmartPay_FAQ='File_PDB_SmartPay_FAQ_1Cx_Zwpf0ddcb4c'
+export File_PDB_Giftcard_FAQ='File_PDB_Giftcard_FAQ_1Cx_Zwpc3108bc1'
+export File_PDB_NGV_FAQ='File_PDB_NGV_FAQ_1Cx_Zwp3fc7a80c'
+export Default_FileUDMO_SI_Retriever='Default_FileUDMO_SI_Retriever_1Cx_Zwp2ed12eac'
+export AgentuserREPLACE='petronas_service_agent_3@00dh10000003zwp.ext'
+export BotuserREPLACE='jit.lim@salesforce.com.petuat'
