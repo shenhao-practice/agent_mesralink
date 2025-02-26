@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!--<activeVersion>2FEOIAW/osBXKeFsWMFj5bvToPuPdxgeu0Ahn7yX/PE=_6</activeVersion>
+    <createdInVersion>63.0</createdInVersion>-->
+    <activeVersion>2</activeVersion>
+    <description>Mesra Rewards FAQ</description>
+    <developerName>PDB_Mesra_Rewards_FAQ</developerName>
+    <masterLabel>PDB Mesra Rewards FAQ</masterLabel>
+    <templateVersions>
+        <content>&quot;&quot;&quot;
+TASK OBJECTIVE
+Your task is to provide clear and helpful answers to customer inquiries
+
+INPUT CONTEXT
+- Specific Question: {!$Input:Questions}
+- Source Document: {!$EinsteinSearch:Default_FileUDMO_SI_Retriever.results}
+
+RESPONSE GUIDELINES
+- Remember to tailor your response to the specific question, focusing on the relevant details.
+- Your tone should be friendly and informative, as if you were speaking directly to the customer.
+- Do not remove any url from any provided information.
+- If there are multiple questions asked by customer then answer each question in below format for better clarity 
+Question 1 : &lt;Question from customer&gt;
+Answer : &lt;Answer for Question 1&gt;
+Question 2 : &lt;Question from customer&gt;
+Answer : &lt;Answer for Question 2&gt;
+....so on
+
+REFERENCE
+- Customer Service Email: mesralink@petronas.com
+
+VALIDATION
+Ensure that you include the links mentioned in the reference in your response whenever they are relevant or when placeholders for links are present.
+&quot;&quot;&quot;
+</content>
+        <inputs>
+            <apiName>Questions</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Questions</masterLabel>
+            <referenceName>Input:Questions</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/Default_FileUDMO_SI_Retriever</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Questions}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:Default_FileUDMO_SI_Retriever</referenceName>
+        </templateDataProviders>
+        <!--<versionIdentifier>2FEOIAW/osBXKeFsWMFj5bvToPuPdxgeu0Ahn7yX/PE=_4</versionIdentifier>-->
+        <versionNumber>1</versionNumber>
+    </templateVersions>
+    <templateVersions>
+        <content>&quot;&quot;&quot;
+TASK OBJECTIVE
+Your task is to provide clear and helpful answers to customer inquiries
+
+INPUT CONTEXT
+- Specific Question: {!$Input:Questions}
+- Source Document: {!$EinsteinSearch:File_PDB_Mesra_Rewards_FAQ.results}
+
+RESPONSE GUIDELINES
+- Remember to tailor your response to the specific question, focusing on the relevant details.
+- Your tone should be friendly and informative, as if you were speaking directly to the customer.
+- Do not remove any url from any provided information.
+- If there are multiple questions asked by customer then answer each question in below format for better clarity 
+Question 1 : &lt;Question from customer&gt;
+Answer : &lt;Answer for Question 1&gt;
+Question 2 : &lt;Question from customer&gt;
+Answer : &lt;Answer for Question 2&gt;
+....so on
+
+REFERENCE
+- Customer Service Email: mesralink@petronas.com
+
+VALIDATION
+Ensure that you include the links mentioned in the reference in your response whenever they are relevant or when placeholders for links are present.
+&quot;&quot;&quot;
+</content>
+        <inputs>
+            <apiName>Questions</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Questions</masterLabel>
+            <referenceName>Input:Questions</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getEinsteinRetrieverResults/File_PDB_Mesra_Rewards_FAQ</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>searchText</parameterName>
+                <valueExpression>{!$Input:Questions}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://List&lt;String&gt;</definition>
+                <isRequired>false</isRequired>
+                <parameterName>outputFieldNames</parameterName>
+                <valueExpression>[&quot;Chunk&quot;]</valueExpression>
+            </parameters>
+            <referenceName>EinsteinSearch:File_PDB_Mesra_Rewards_FAQ</referenceName>
+        </templateDataProviders>
+        <!--<versionIdentifier>2FEOIAW/osBXKeFsWMFj5bvToPuPdxgeu0Ahn7yX/PE=_6</versionIdentifier>-->
+        <versionNumber>2</versionNumber>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

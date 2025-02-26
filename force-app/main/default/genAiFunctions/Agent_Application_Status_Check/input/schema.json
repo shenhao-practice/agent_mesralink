@@ -1,0 +1,15 @@
+{
+  "required" : [ "inputSmpApplicationNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "inputSmpApplicationNumber" : {
+      "title" : "inputSmpApplicationNumber",
+      "description" : "Smartpay Application Number in the format of SPR-XXXXX-XXXXXX",
+      "const" : "",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <!--<activeVersion>2FEOIAW/osBXKeFsWMFj5bvToPuPdxgeu0Ahn7yX/PE=_16</activeVersion>-->
+    <activeVersion>1</activeVersion>
+    <!--<createdInVersion>63.0</createdInVersion>-->
+    <description>Agentforce to analysis the conversation</description>
+    <developerName>Agent_Conversation_Analysis</developerName>
+    <masterLabel>Agent Conversation Analysis</masterLabel>
+    <templateVersions>
+        <content>Instruction for AI Agent: Process Conversations into JSON Format
+Your task is to process the following conversation between Agent Melissa and a Customer, converting it into a structured JSON format. 
+Adhere strictly to the following requirements to ensure consistency and completeness
+
+## Input Specifications:
+Conversation Data:  Provided as {!$Input:Case.Description}.
+
+## Timeframe Constraints:
+1. Conversation Timestamps: Messages are recorded in UTC+8.
+2. Session Timeframe: The Messaging Session&apos;s start time and end time are {!$Input:MessagingSession.StartTime} and {!$Input:MessagingSession.EndTime}, both in UTC+0.
+3. Adjust all conversation timestamps from UTC+8 to UTC+0.
+4. Important: Messages outside the session timeframe (UTC+0) must still be included but flagged as &quot;out_of_session&quot;: true in their group.
+
+## Pre-Processing Filters
+Before creating any conversation pairs, apply these filters:
+1. Drop any message that:
+   - Contains only &quot;null&quot; or empty string
+   - Contains only whitespace
+2. Drop any potential pair where:
+   - Either customer_message or agent_message is empty/null
+   - Messages contain only system notifications or technical data
+
+
+## JSON Root Level:
+1. Include a total_groups counter representing the total number of conversation groups.
+2. Create an array called conversation_pairs.
+
+## Conversation Pair Structure:
+Each pair must include:
+a. A group_number (incremental, starting from 1).
+b. A customer&apos;s question
+c. An AI agent respective answer to customers question.
+d. A feedback message from customer indicating Yes/No for AI Agent&apos;s response if the customer decides to give feedback. (Customer&apos;s response as a feedback, optional and see definition below).
+e. Category definition (see definitions below).
+f. An in_session flag:
+&quot;in_session&quot;: true if both messages are within the Messaging Session timeframe.
+&quot;in_session&quot;: false if one or both messages fall outside the session timeframe.
+Look for closing indicators like &quot;End&quot;, &quot;Never mind&quot;, or final pleasantries.
+
+## Category definition:
+- Assign one of the following predefined categories based on the content:
+- Define category2 from this list [&apos;SmartPay&apos;,&apos;Gift Card&apos;,&apos;NGV&apos;,&apos;SETEL&apos;,&apos;Cardless Mesra&apos;,&apos;Mesra Card&apos;,&apos;Retail Station&apos;, &apos;Closing&apos;, &apos;Others&apos;]
+- Define category3 from this list [&apos;Account Level&apos;, &apos;Acknowledge Receipt - Email/Fax&apos;, &apos;Activation&apos;, &apos;Card Replacement&apos;, &apos;Card Replacement (Bulk)&apos;, &apos;Cards &amp; PIN&apos;, &apos;Change Card Limit&apos;, &apos;Change Product&apos;, &apos;Corporate/ Bulk Request&apos;, &apos;Customer Service&apos;, &apos;Diesel Subsidy&apos;, &apos;Dual-fuel Vehicle&apos;, &apos;Equipment/Facilities&apos;, &apos;General Info&apos;, &apos;Increase Topup Limit for station&apos;, &apos;Kedai Mesra&apos;, &apos;Lost/Blocked Card&apos;, &apos;Manual/Guide&apos;, &apos;Mesra Loyalty&apos;, &apos;Mesra Store&apos;, &apos;Mono-fuel Vehicle&apos;, &apos;Promotion&apos;, &apos;Registration&apos;, &apos;Setel Apps&apos;, &apos;SOA&apos;, &apos;SPO&apos;, &apos;Status/Check Balance&apos;, &apos;System&apos;, &apos;Taxi Driver&apos;, &apos;Toilet/Surau&apos;, &apos;Transaction History&apos;, &apos;Transaction History Request&apos;, &apos;Transfer Balance&apos;, &apos;Unable to use Card/Pin&apos;, &apos;Others&apos;]
+- Define category4 from this list [&apos;Account Activation&apos;,&apos;Account Level&apos;,&apos;Aircond not working&apos;,&apos;Axxess Related&apos;,&apos;Billed Transaction Listing&apos;,&apos;Card Activation&apos;,&apos;Card Blocking&apos;,&apos;Card Generation&apos;,&apos;Card Level&apos;,&apos;Card Renewal&apos;,&apos;Card Status&apos;,&apos;Card Tagging&apos;,&apos;Card Termination&apos;,&apos;Ceiling&apos;,&apos;Change Card limit&apos;,&apos;Change Credit Limit&apos;,&apos;Change Of Account Plan&apos;,&apos;Change Plan&apos;,&apos;Change Product&apos;,&apos;Change Statement Preference&apos;,&apos;Check Account Status&apos;,&apos;Check Balance&apos;,&apos;Check Card Transaction/Count Limit&apos;,&apos;Check E-wallet Balance&apos;,&apos;Check Entitlement Status&apos;,&apos;Check Mesra Card Info Via Receipt&apos;,&apos;Check Payout Status&apos;,&apos;Check Personal Information&apos;,&apos;Check Point Balance&apos;,&apos;Check Points Balance&apos;,&apos;Cleaniness&apos;,&apos;Customer&apos;s Data Update&apos;,&apos;Data Updates&apos;,&apos;Delivery Of Cards &amp; Pin&apos;,&apos;Dispenser&apos;,&apos;Dormant Account Activation&apos;,&apos;Dormant Account KYC Submission&apos;,&apos;Dormant Account Status&apos;,&apos;Duplicate Account&apos;,&apos;E-Invoice&apos;,&apos;Fax/Email Not Received&apos;,&apos;Fax/Email Received&apos;,&apos;General Info&apos;,&apos;High Price&apos;,&apos;How to Apply&apos;,&apos;Indoor Payment Terminal&quot;&apos;,&apos;Integrity&apos;,&apos;Introduce Cardless&apos;,&apos;Lack of Knowledge&apos;,&apos;Malfunction Equipment&apos;,&apos;Merchant Restriction&apos;,&apos;Mesra Card Faulty/Lost&apos;,&apos;Misbehave/Harrassment&apos;,&apos;Mobile Apps Info&apos;,&apos;N/A&apos;,&apos;New / Replacement&apos;,&apos;New Account Status&apos;,&apos;New Application&apos;,&apos;New Application - Cardless Smartpay&apos;,&apos;New Application - Follow Up&apos;,&apos;New Application - Incomplete Document&apos;,&apos;NGV&apos;,&apos;Non-accessible/Closed/Locked&apos;,&apos;On-Acct Scheme&apos;,&apos;Others&apos;,&apos;Outdoor Payment Terminal&apos;,&apos;Payment Status/Advice&apos;,&apos;Pest Control&apos;,&apos;PETRONAS Shop&apos;,&apos;Physical Card Availability&apos;,&apos;Point Not Tally (Cardless)&apos;,&apos;Point Transfer (Cardless)&apos;,&apos;Points Expiry&apos;,&apos;Points Issuance&apos;,&apos;Points Redemption&apos;,&apos;Points Transfer&apos;,&apos;POS Malaysia New Application&apos;,&apos;Pre-Approved Application&apos;,&apos;Product Cleanliness&apos;,&apos;Product Expired&apos;,&apos;Product Not Available&apos;,&apos;Program Mechanism&apos;,&apos;Promotion / Campaign / Contest&apos;,&apos;Promotion/ Campaign / Contest&apos;,&apos;Provide Guideline&apos;,&apos;Quota&apos;,&apos;Rebate Related&apos;,&apos;Redemption Failed at OPT&apos;,&apos;Regen Pin&apos;,&apos;Registration&apos;,&apos;Reinstatement&apos;,&apos;Release Company&apos;,&apos;Replacement Card&apos;,&apos;Request Card List&apos;,&apos;Request Change Billing Cycle&apos;,&apos;Request Waiver&apos;,&apos;Reset Pin Count&apos;,&apos;Reset Purchase PIN ( 6 Digit)&apos;,&apos;Revise KPDNKK Quota&apos;,&apos;Rewards / Bonus Point&apos;,&apos;Road&apos;,&apos;Rude&apos;,&apos;Security Deposit&apos;,&apos;Setel Station Availability&apos;,&apos;SOA older than 6 months&apos;,&apos;SOA within 6 months&apos;,&apos;Station Availability&apos;,&apos;Station Participation&apos;,&apos;Subsidy ID Card Application&apos;,&apos;Terminate account / Refund&apos;,&apos;Termination Of Account&apos;,&apos;Tiles&apos;,&apos;Tire Inflator&apos;,&apos;Transaction Detail&apos;,&apos;Unauthorized Activity&apos;,&apos;Unbilled Transaction Listing&apos;,&apos;Uncaptured Points Guideline&apos;,&apos;Unhelpful&apos;,&apos;Unlink Cardless Mesra&apos;,&apos;Unlink Mesra Card&apos;,&apos;Unpleasant Odour&apos;,&apos;User Guide - Related to Cardless&apos;,&apos;User Guide - Related to SETEL Guideline&apos;,&apos;Voucher Related Issue&apos;,&apos;Web Page Error&apos;, &apos;Others&apos;]
+- You must use the category values from the defined list
+
+## Pairing and Processing Rules:
+1. Must pair all conversation in chronological order using timestamps 
+2. Pair 1:1:1 interaction message for customer message, agent message and customer feedback message in each conversation pair. 
+3. Only add pairs that have below into JSON :
+  - A valid customer message AND a valid agent response for the customer&apos;s message
+  - OR a valid agent message with feedback
+  - Clear category2 assignments from the defined list
+4. Within each conversation pair:  
+- Messages should be ordered by timestamp (earliest first)  
+- If agent message comes first chronologically, leave the customer message empty
+5. Must not duplicate the same message in multiple pairs 
+6. For each valid pair, require:
+   - Chronological ordering by timestamp
+   - Complete message content
+   - Valid categorization
+   - Clear feedback status if exists
+
+## Feedback Handling: 
+1. Detect feedback opportunities by looking for:  
+- Agent messages ending with feedback seeking questions like &quot;Did this answer your question?&quot;, &quot;Does it help?&quot; or similar phrase  
+- Direct customer responses following these questions 
+2. When a feedback opportunity is detected:  
+- Include the customer&apos;s response in the feedback object  
+- Set feedback.message to the customer&apos;s response text  
+- Set feedback.timestamp to match the customer response timestamp  
+- Set feedback.flag based on the response:  
+* true for positive responses (&quot;Yes&quot;, &quot;ok&quot;, &quot;fine&quot;, &quot;correct&quot;, &quot;thank you&quot;, etc.)  
+* false for negative responses (&quot;No&quot;, &quot;Not really&quot;, etc.)  
+* Empty string (&quot;&quot;) if no direct feedback is given 
+3. Example feedback patterns:  
+Agent: &quot;...Did this answer your question?&quot;  
+Customer: &quot;Yes&quot;  → feedback: { &quot;message&quot;: &quot;Yes&quot;, &quot;flag&quot;: true, &quot;timestamp&quot;: &quot;[customer_timestamp]&quot; }  
+Agent: &quot;...Did this answer your question?&quot;  
+Customer: &quot;No&quot;  → feedback: { &quot;message&quot;: &quot;No&quot;, &quot;flag&quot;: false, &quot;timestamp&quot;: &quot;[customer_timestamp]&quot; } 
+4. If no feedback was solicited or given:  → feedback: { &quot;message&quot;: &quot;&quot;, &quot;flag&quot;: &quot;&quot;, &quot;timestamp&quot;: &quot;&quot; } 
+5. For closing messages (e.g.,&quot;Stop&quot;, &quot;End&quot;, &quot;Never mind&quot;):  
+- Include them as feedback only if they are in response to an agent&apos;s question  
+- Otherwise, treat them as regular customer messages
+
+## Pair Validation
+1. If category2 is &quot;Others&quot;:
+   - Drop the entire pair
+   - Continue to next potential pair
+2. If a message cannot be paired (e.g., no corresponding agent or customer message)
+   - Drop the entire pair
+   - Continue to next potential pair 
+
+## Length Management
+1. Track running JSON length:
+   - Calculate length of each pair before adding
+   - Monitor total accumulated length
+   - Stop adding pairs if approaching 10000 characters
+2. Prioritize pairs by:
+   - Completeness (both messages present)
+   - Presence of meaningful feedback
+
+## Output Requirements:
+JSON Format:
+1. Use valid JSON syntax with nested objects.
+2. Preserve all original punctuation, formatting, quoted text, and URLs.
+Example JSON Structure for a pair where customer message comes first: 
+{
+ &quot;total_groups&quot;: &quot;&lt;integer&gt;&quot;,
+ &quot;conversation_pairs&quot;: [
+  {
+   &quot;group_number&quot;: &quot;&lt;integer&gt;&quot;,
+   &quot;customer&quot;: {
+   &quot;message&quot;: &quot;&lt;string&gt;&quot;,
+   &quot;timestamp&quot;: &quot;&lt;UTC+0&gt;&quot;
+   },
+   &quot;agent&quot;: {
+    &quot;message&quot;: &quot;&lt;string&gt;&quot;,
+    &quot;timestamp&quot;: &quot;&lt;UTC+0&gt;&quot;
+   },
+   &quot;feedback&quot;: {
+    &quot;message&quot;: &quot;&lt;string&gt;&quot;,
+    &quot;flag&quot;: &quot;&lt;boolean&gt;&quot;,
+    &quot;timestamp&quot;: &quot;&lt;UTC+0&gt;&quot;
+   },
+   &quot;category2&quot;: &quot;&lt;string&gt;&quot;,
+   &quot;category3&quot;: &quot;&lt;string&gt;&quot;,
+   &quot;category4&quot;: &quot;&lt;string&gt;&quot;,
+   &quot;in_session&quot;: &quot;&lt;boolean&gt;&quot;
+  }
+ ]
+}
+
+## Final Output:
+- Return the JSON object without any additional message, indicator, commentary or additional syntax.
+- Don&apos;t include the additional syntax like ```json```
+</content>
+        <inputs>
+            <apiName>MessagingSession</apiName>
+            <definition>SOBJECT://MessagingSession</definition>
+            <masterLabel>MessagingSession</masterLabel>
+            <referenceName>Input:MessagingSession</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Case</apiName>
+            <definition>SOBJECT://Case</definition>
+            <masterLabel>Case</masterLabel>
+            <referenceName>Input:Case</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT4Omni</primaryModel>
+        <status>Published</status>
+        <!--<versionIdentifier>2FEOIAW/osBXKeFsWMFj5bvToPuPdxgeu0Ahn7yX/PE=_16</versionIdentifier>-->
+        <versionNumber>1</versionNumber>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

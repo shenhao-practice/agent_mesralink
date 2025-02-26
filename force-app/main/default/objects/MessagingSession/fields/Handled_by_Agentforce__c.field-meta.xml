@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Handled_by_Agentforce__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Determines if the session routes to agentforce</description>
+    <label>Handled by Agentforce</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

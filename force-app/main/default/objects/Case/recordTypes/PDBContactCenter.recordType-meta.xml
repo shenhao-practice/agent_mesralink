@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PDBContactCenter</fullName>
+    <active>true</active>
+    <businessProcess>PDB Contact Center Support Process</businessProcess>
+    <compactLayoutAssignment>Contact_Center_Layout</compactLayoutAssignment>
+    <label>PDB Contact Center</label>
+    <picklistValues>
+        <picklist>ASA_Feedback__c</picklist>
+        <values>
+            <fullName>NA</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
