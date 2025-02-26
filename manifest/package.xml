@@ -24,11 +24,11 @@
         <members>Petronas_Service_Agent_3.v1</members><!--
         <members>Melissa_UpdatedV2_AgentForce.v1</members>-->        
         <name>BotVersion</name>
-    </types>
+    </types><!--
     <types>
         <members>StartChat</members>
         <name>ConversationMessageDefinition</name>
-    </types>
+    </types>-->
     <types>
         <members>Case.ASA_Feedback__c</members>
         <members>MessagingSession.Escalated_by_Agentforce__c</members>
